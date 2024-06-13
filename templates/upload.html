@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Bank Note Image</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/images/back.jpg'); /* Replace 'background.jpg' with your image file */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+        .system{
+            color: #fff;
+        }
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            text-align: center;
+            margin-top: 30px;
+        }
+        input[type="file"] {
+            display: block;
+            margin: 0 auto 20px;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+</head>
+<body>
+    <h1 class="system">Counterfeited Bank Note Detection System</h1>
+    <div class="container">
+        <h1>Upload Bank Note Image</h1>
+        <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+            <input id="fileInput" type="file" name="file" accept="image/*">
+            <button id="submitBtn" type="submit">Detect Bank Note</button>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById("uploadForm").addEventListener("submit", function(event) {
+            var fileInput = document.getElementById('fileInput');
+            var file = fileInput.files[0];
+            if (file && file.type !== 'image/jpeg') {
+                event.preventDefault(); // Prevent form submission
+                alert("Please upload a nepali note image.");
+                setTimeout(function() {
+                    location.reload();
+                }, 1000); // Refresh the page after 3 seconds
+            }
+        });
+    </script>
+</body>
+</html>
